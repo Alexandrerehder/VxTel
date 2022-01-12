@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost",
+  "logging": true,
+  "username": "rehdera",
+  "password": "secreta",
+  "database": "vxtel_db",
+  "cache": true,
+  "migrations": [
+    "./src/shared/infra/typeorm/migrations/*.ts"
+  ],
+  "entities": [
+    "./src/modules/**/entities/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+  }
+}

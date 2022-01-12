@@ -1,0 +1,106 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "VxTel Documentation",
+    "description": "This is an API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "alexandrerehder@hotmail.com"
+    }
+  },
+  "paths": {
+    "/plans": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "summary": "List all plans",
+        "description": "List all plans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ddds": {
+      "get": {
+        "tags": [
+          "DDDs"
+        ],
+        "summary": "List all DDDs",
+        "description": "List all DDDs",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/price": {
+      "post": {
+        "tags": [
+          "Price"
+        ],
+        "summary": "Get a price of call",
+        "description": "Get a price of call",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Price"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid Option"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Price": {
+      "type": "object",
+      "properties": {
+        "origem": {
+          "type": "string"
+        },
+        "destino": {
+          "type": "string"
+        },
+        "minutos": {
+          "type": "number"
+        },
+        "nome": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

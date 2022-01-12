@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  postgres_db:
+    image: postgres
+    container_name: vxtel_db
+    restart: always
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
+    volumes:
+      - pgdata:/data/postgres
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "${POSTGRES_DB}",
+          "-U",
+          "${POSTGRES_USER}"
+        ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+
+  api:
+    build: .
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - .:/usr/app
+    container_name: vxtel
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+  appweb:
+    build: ../Front-End
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - .:/usr/app
+    container_name: vxtel_web
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+    driver: local
