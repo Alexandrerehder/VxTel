@@ -51,7 +51,7 @@ $ git clone https://github.com/Alexandrerehder/VxTel
 $ cd VxTel/Back-End
 
 # Suba os containers (api, postgres, appweb)
-$ sudo make up
+$ yarn && sudo make up
 
 # O servidor inciará na porta:3333 - acesse http://localhost:3333
 # A aplicação web inciará na porta:3000 - acesse http://localhost:3000
