@@ -45,7 +45,7 @@ Antes de começar, é preciso ter instalado em sua máquina as seguintes ferrame
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/Alexandrerehder/VxTel
+$ git clone https://github.com/alexandrerehder/VxTel
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd VxTel/Back-End
